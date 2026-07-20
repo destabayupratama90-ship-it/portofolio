@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desta Bayu Pratama - Personal Hub</title>
+    <!-- Font Awesome untuk Ikon Menarik -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 1rem;
+        }
+
+        /* --- HEADER & AVATAR STYLE --- */
+        header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin-bottom: 1.5rem;
+        }
+
+        .avatar-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, #38bdf8, #a855f7, #ec4899);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+            background-color: #334155;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+            100% { box-shadow: 0 0 35px rgba(236, 72, 153, 0.6); }
+        }
+
+        header h1 {
+             font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #38bdf8, #a855f7);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: #38bdf8;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .header-meta a {
+            color: #38bdf8;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-meta a:hover {
+            color: #ec4899;
+            text-decoration: underline;
+        }
+
+        /* --- GRID CONTAINER --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* --- BASE CARD STYLE --- */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            padding: 1.8rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* --- BUTTON IKON INTERAKTIF --- */
+        .icon-btn, .icon-link-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: all 0.2s ease;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .icon-btn:hover, .icon-link-btn:hover { transform: scale(1.1); }
+        .icon-btn:active, .icon-link-btn:active { transform: scale(0.95); }
+
+        .card-content {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- STYLE STATISTIK PERSENAN --- */
+        
+        /* Gaya Linier Bar (Garis Pengukur) */
+        .stat-bar-container {
+            margin-top: 1.2rem;
+        }
+        .stat-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+        .stat-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .stat-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        /* Gaya Circular Bar (Lingkaran Persen) */
+        .stat-circle-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.2rem;
+            background: rgba(0,0,0,0.15);
+            padding: 0.8rem;
+            border-radius: 14px;
+        }
+        
+        .circle-progress {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .circle-progress::before {
+            content: "";
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+        }
+        .circle-value {
+            position: relative;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* --- KUSTOMISASI DESAIN UNIK TIAP KARTU --- */
+
+        /* 1. Profil (Gaya Neon Cyan + Bar Pengalaman Umum) */
+        .card-profile { border-left: 4px solid #06b6d4; }
+        .card-profile .icon-btn { background: rgba(6, 182, 212, 0.15); color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+        .card-profile .stat-bar-fill { background: #06b6d4; width: 85%; }
+        .card-profile .stat-info { color: #06b6d4; }
+
+        /* 2. Proyek (Gaya Bulat Ungu Solid + Progress Sukses) */
+        .card-project { background: linear-gradient(135deg, #1e293b 0%, #2e1065 100%); }
+        .card-project .icon-btn { background: #a855f7; color: #fff; border-radius: 50%; }
+        .card-project .stat-bar-fill { background: linear-gradient(to right, #a855f7, #ec4899); width: 92%; }
+        .card-project .stat-info { color: #e9d5ff; }
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            color: #e9d5ff;
+        }
+
+        /* 3. Keahlian (Gaya Garis Putus-Putus Amber + Multi-stats) */
+        .card-skills:hover { border-color: #f59e0b; }
+        .card-skills .icon-btn { background: transparent; border: 2px dashed #f59e0b; color: #f59e0b; }
+        .skill-stat-item { margin-top: 0.6rem; }
+        .skill-bar { height: 6px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+        .skill-fill-html { width: 95%; height: 100%; background: #ef4444; }
+        .skill-fill-js { width: 80%; height: 100%; background: #f59e0b; }
+        .skill-fill-react { width: 75%; height: 100%; background: #38bdf8; }
+
+        /* 4. Kontak (Gaya Belah Ketupat Hijau WhatsApp + Persen Responsif) */
+        .card-contact { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); }
+        .card-contact .icon-link-btn {
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white; transform: rotate(45deg);
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+        }
+        .card-contact .icon-link-btn i { transform: rotate(-45deg); }
+        .card-contact .icon-link-btn:hover { transform: rotate(45deg) scale(1.1); }
+        /* Lingkaran Persen Hijau (99% Responsif) */
+        .card-contact .circle-progress { background: conic-gradient(#25d366 99%, #334155 0deg); }
+        .card-contact .circle-value { color: #25d366; }
+
+        /* 5. Hobi (Gaya Pentagon Hijau Retro + Persen Jam Terbang) */
+        .card-hobby { border-bottom: 4px solid #10b981; }
+        .card-hobby .icon-btn {
+            background: #10b981; color: #0f172a;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        }
+        /* Lingkaran Persen Hijau Toska (70% Gaming/Sci-fi Focus) */
+        .card-hobby .circle-progress { background: conic-gradient(#10b981 70%, #334155 0deg); }
+        .card-hobby .circle-value { color: #10b981; }
+
+        /* 6. Visi (Gaya Kotak Minimalis Emas + Persen Akurasi Target) */
+        .card-vision .icon-btn { background: rgba(234, 179, 8, 0.15); color: #eab308; border-radius: 8px; }
+        .card-vision blockquote { border-left: 3px solid #eab308; padding-left: 0.8rem; font-style: italic; }
+        .card-vision .stat-bar-fill { background: #eab308; width: 100%; }
+        .card-vision .stat-info { color: #eab308; }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .grid-container { grid-template-columns: 1fr; }
+            .header-meta { flex-direction: column; gap: 0.5rem; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        </div>
+        <h1>Desta Bayu Pratama</h1>
+        <p>Creative Developer & Technology Enthusiast</p>
+        
+        <!-- PETA ALAMAT DAN KONTAK -->
+        <div class="header-meta">
+            <a href="https://maps.google.com" target="_blank">
+                <i class="fa-solid fa-location-dot"></i> Jambi, Indonesia
+            </a>
+            <a href="https://wa.me/6283121799722" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> +62 812-3456-789
+            </a>
+        </div>
+    </header>
+
+    <div class="grid-container">
+
+        <!-- KARTU 1: TENTANG SAYA -->
+        <div class="card card-profile">
+    <div>
+        <div class="card-header">
+            <h3>Tentang Saya</h3>
+            <button class="icon-btn" onclick="openTab('Tentang Saya', 'Ini adalah halaman profil lengkap Desta Bayu Pratama. Seorang petualang kode digital!')">
+                <i class="fa-solid fa-user-astronaut"></i>
+            </button>
+        </div>
+
+        <div class="card-content">
+
+            <!-- FOTO PROFIL -->
+            <div class="about-photo">
+                <img src="profile/images.jpg" alt="Foto Profil">
+            </div>
+
+            <p>
+                Halo! Saya Desta, seorang kreator digital yang gemar menjelajahi dunia
+                teknologi, coding, dan desain visual untuk menciptakan solusi interaktif.
+            </p>
+
+        </div>
+    </div>
+
+    <!-- STATISTIK -->
+    <div class="stat-bar-container">
+        <div class="stat-info">
+            <span>Jam Terbang Coding</span>
+            <span>85%</span>
+        </div>
+
+        <div class="stat-bar-bg">
+            <div class="stat-bar-fill"></div>
+        </div>
+    </div>
+</div>
+        <!-- KARTU 2: PROYEK -->
+        <div class="card card-project">
+            <div>
+                <div class="card-header">
+                    <h3>Proyek Terbaru</h3>
+                    <button class="icon-btn" onclick="openTab('Proyek Desta', 'Daftar portofolio lengkap proyek pengembangan aplikasi berbasis AI dan Web App.')">
+                        <i class="fa-solid fa-code-branch"></i>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <p><strong>NeuraLink Web App</strong></p>
+                    <p>Mengembangkan aplikasi pintar untuk manajemen tugas otomatis menggunakan AI.</p>
+                    <span class="tag">UI/UX Design</span> <span class="tag">Development</span>
+                </div>
+            </div>
+            <!-- STATISTIK PERSENAN LINIER GRADIENT -->
+            <div class="stat-bar-container">
+                <div class="stat-info">
+                    <span>Penyelesaian Proyek</span>
+                    <span>92%</span>
+                </div>
+                <div class="stat-bar-bg">
+                    <div class="stat-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KARTU 3: KEAHLIAN / MULTI STATS -->
+        <div class="card card-skills">
+            <div>
+                <div class="card-header">
+                    <h3>Tech Stack</h3>
+                    <button class="icon-btn" onclick="openTab('Tech Stack & Skills', 'Keahlian teknis meliputi ekosistem Javascript modern, framework CSS, dan backend development.')">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </button>
+                </div>
+                <!-- DETAIL PERSENAN PER SKILL -->
+                <div class="card-content">
+                    <div class="skill-stat-item">
+                        <div class="stat-info"><span>HTML/CSS</span><span>95%</span></div>
+                        <div class="skill-bar"><div class="skill-fill-html"></div></div>
+                    </div>
+                    <div class="skill-stat-item">
+                        <div class="stat-info"><span>JavaScript</span><span>80%</span></div>
+                        <div class="skill-bar"><div class="skill-fill-js"></div></div>
+                    </div>
+                    <div class="skill-stat-item">
+                        <div class="stat-info"><span>React.js</span><span>75%</span></div>
+                        <div class="skill-bar"><div class="skill-fill-react"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KARTU 4: WHATSAPP + STATISTIK LINGKARAN -->
+        <div class="card card-contact">
+            <div>
+                <div class="card-header">
+                    <h3>Hubungi via WA</h3>
+                    <a class="icon-link-btn" href="https://wa.me/6283121799722?text=Halo%20Desta." target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <p>Punya ide luar biasa? Tekan ikon hijau untuk berdiskusi langsung di ruang obrolan obrolan baru.</p>
+                </div>
+            </div>
+            <!-- STATISTIK LINGKARAN (CIRCULAR PROGRESS) -->
+            <div class="stat-circle-box">
+                <div class="circle-progress">
+                    <span class="circle-value">99%</span>
+                </div>
+                <div style="font-size: 0.85rem; font-weight: 500;">
+                    <span style="color: #25d366; display: block;">Tingkat Balasan</span>
+                    <span style="color: var(--text-muted);">Sangat Responsif</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- KARTU 5: HOBI + STATISTIK LINGKARAN -->
+        <div class="card card-hobby">
+            <div>
+                <div class="card-header">
+                    <h3>Minat & Hobi</h3>
+                    <button class="icon-btn" onclick="openTab('Hobi & Hiburan', 'Menjelajahi dunia game kompetitif, e-sports, musik lo-fi, dan sci-fi.')">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <p>Menghabiskan waktu luang dengan berkompetisi di game taktis, membaca buku fiksi ilmiah, dan merakit setup PC.</p>
+                </div>
+            </div>
+            <!-- STATISTIK LINGKARAN HOBI -->
+            <div class="stat-circle-box">
+                <div class="circle-progress">
+                    <span class="circle-value">70%</span>
+                </div>
+                <div style="font-size: 0.85rem; font-weight: 500;">
+                    <span style="color: #10b981; display: block;">Fokus Kreativitas</span>
+                    <span style="color: var(--text-muted);">E-Sports & Musik</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- KARTU 6: VISI -->
+        <div class="card card-vision">
+            <div>
+                <div class="card-header">
+                    <h3>Motto & Visi</h3>
+                    <button class="icon-btn" onclick="openTab('Visi & Misi', 'Misi utama: Membuat teknologi menjadi jembatan yang mempermudah kehidupan manusia sehari-hari.')">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <blockquote>
+                        "Mengubah baris kode rumit menjadi pengalaman pengguna yang sederhana dan berdampak nyata."
+                    </blockquote>
+                </div>
+            </div>
+            <!-- STATISTIK BAR TARGET -->
+            <div class="stat-bar-container">
+                <div class="stat-info">
+                    <span>Komitmen Target</span>
+                    <span>100%</span>
+                </div>
+                <div class="stat-bar-bg">
+                    <div class="stat-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT TAB BARU -->
+    <script>
+        function openTab(judul, isi) {
+            const tabBaru = window.open();
+            tabBaru.document.write(`
+                <html>
+                <head>
+                    <title>${judul}</title>
+                    <style>
+                        body { background: #0f172a; color: #f8fafc; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+                        .box { background: #1e293b; padding: 30px; border-radius: 16px; max-width: 500px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #334155; }
+                        h1 { color: #38bdf8; margin-bottom: 20px; }
+                        p { color: #94a3b8; line-height: 1.6; font-size: 1.1rem; }
+                    </style>
+                </head>
+                <body>
+                    <div class="box">
+                        <h1>📌 Fitur: ${judul}</h1>
+                        <p>${isi}</p>
+                    </div>
+                </body>
+                </html>`)
+        }
+    </script>
+
+</body>
+</html>
